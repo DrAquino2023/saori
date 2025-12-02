@@ -1,0 +1,697 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Saori Centro de Belleza</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FF1493;
+            --primary-light: #FF69B4;
+            --secondary-color: #FFF0F5;
+            --white: #FFFFFF;
+            --gray: #8E8E8E;
+            --dark-gray: #333333;
+            --light-gray: #F5F5F5;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --error: #F44336;
+            --info: #2196F3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light-gray);
+            color: var(--dark-gray);
+        }
+
+        .admin-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--white);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            padding: 2rem 0;
+        }
+
+        .logo {
+            text-align: center;
+            padding: 0 1rem 2rem;
+            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 2rem;
+        }
+
+        .logo h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            border-right: 3px solid var(--primary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .header {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: var(--dark-gray);
+            font-size: 1.8rem;
+        }
+
+        .date-filter {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .date-filter input,
+        .date-filter select {
+            padding: 0.5rem;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .stat-icon.reservas { background: var(--primary-color); }
+        .stat-icon.ingresos { background: var(--success); }
+        .stat-icon.pendientes { background: var(--warning); }
+        .stat-icon.canceladas { background: var(--error); }
+
+        .stat-info h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Tables */
+        .table-container {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h2 {
+            color: var(--dark-gray);
+            font-size: 1.3rem;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: var(--white);
+        }
+
+        .btn-danger {
+            background: var(--error);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--gray);
+            color: var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        th {
+            background: var(--secondary-color);
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .status-pendiente {
+            background: #FFF3CD;
+            color: #856404;
+        }
+
+        .status-confirmada {
+            background: #D4EDDA;
+            color: #155724;
+        }
+
+        .status-cancelada {
+            background: #F8D7DA;
+            color: #721C24;
+        }
+
+        .status-completada {
+            background: #D1ECF1;
+            color: #0C5460;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h3 {
+            color: var(--dark-gray);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .admin-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th,
+            td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Loading */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            color: var(--gray);
+        }
+
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--light-gray);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Panel Admin</h2>
+                <p>Saori Beauty</p>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                            <i class="fas fa-chart-pie"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#reservas" class="nav-link" data-section="reservas">
+                            <i class="fas fa-calendar-check"></i>
+                            Reservas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#horarios" class="nav-link" data-section="horarios">
+                            <i class="fas fa-clock"></i>
+                            Horarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#servicios" class="nav-link" data-section="servicios">
+                            <i class="fas fa-spa"></i>
+                            Servicios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#reportes" class="nav-link" data-section="reportes">
+                            <i class="fas fa-chart-bar"></i>
+                            Reportes
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="header">
+                    <h1>Dashboard</h1>
+                    <div class="date-filter">
+                        <input type="date" id="filterDate" value="">
+                        <button class="btn btn-primary" onclick="loadDashboard()">
+                            <i class="fas fa-sync"></i>
+                            Actualizar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon reservas">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalReservas">-</h3>
+                            <p>Reservas Hoy</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon ingresos">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="ingresosDia">-</h3>
+                            <p>Ingresos del DÃ­a</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon pendientes">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="reservasPendientes">-</h3>
+                            <p>Pendientes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon canceladas">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="reservasCanceladas">-</h3>
+                            <p>Canceladas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Reservations -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Reservas de Hoy</h2>
+                    </div>
+                    <div id="dashboardReservas">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            Cargando...
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reservas Section -->
+            <section id="reservas" class="content-section">
+                <div class="header">
+                    <h1>GestiÃ³n de Reservas</h1>
+                    <div class="date-filter">
+                        <input type="date" id="reservasFilterDate">
+                        <select id="reservasFilterEstado">
+                            <option value="">Todos los estados</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="confirmada">Confirmada</option>
+                            <option value="completada">Completada</option>
+                            <option value="cancelada">Cancelada</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="loadReservas()">
+                            <i class="fas fa-search"></i>
+                            Filtrar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Lista de Reservas</h2>
+                        <div class="table-actions">
+                            <button class="btn btn-success" onclick="exportReservas()">
+                                <i class="fas fa-download"></i>
+                                Exportar
+                            </button>
+                        </div>
+                    </div>
+                    <div id="reservasTable">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            Cargando reservas...
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Horarios Section -->
+            <section id="horarios" class="content-section">
+                <div class="header">
+                    <h1>ConfiguraciÃ³n de Horarios</h1>
+                    <button class="btn btn-primary" onclick="saveHorarios()">
+                        <i class="fas fa-save"></i>
+                        Guardar Cambios
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Horarios de AtenciÃ³n</h2>
+                    </div>
+                    <div id="horariosConfig">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            Cargando configuraciÃ³n...
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Servicios Section -->
+            <section id="servicios" class="content-section">
+                <div class="header">
+                    <h1>GestiÃ³n de Servicios</h1>
+                    <button class="btn btn-primary" onclick="openServiceModal()">
+                        <i class="fas fa-plus"></i>
+                        Nuevo Servicio
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <div id="serviciosTable">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            Cargando servicios...
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reportes Section -->
+            <section id="reportes" class="content-section">
+                <div class="header">
+                    <h1>Reportes y EstadÃ­sticas</h1>
+                </div>
+                <p>SecciÃ³n en desarrollo...</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    
+    <!-- Reserva Detail Modal -->
+    <div id="reservaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Detalle de Reserva</h3>
+                <button class="close-btn" onclick="closeModal('reservaModal')">&times;</button>
+            </div>
+            <div id="reservaDetail">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="serviceModalTitle">Nuevo Servicio</h3>
+                <button class="close-btn" onclick="closeModal('serviceModal')">&times;</button>
+            </div>
+            <form id="serviceForm">
+                <input type="hidden" id="serviceId" name="id">
+                
+                <div class="form-group">
+                    <label for="serviceName">Nombre del Servicio</label>
+                    <input type="text" id="serviceName" name="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="serviceDescription">DescripciÃ³n</label>
+                    <textarea id="serviceDescription" name="descripcion" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="servicePrice">Precio</label>
+                    <input type="number" id="servicePrice" name="precio" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="serviceDuration">DuraciÃ³n (minutos)</label>
+                    <input type="number" id="serviceDuration" name="duracion" value="120" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="serviceActive" name="activo" checked>
+                        Servicio activo
+                    </label>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('serviceModal')">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
+

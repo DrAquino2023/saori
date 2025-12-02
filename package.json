@@ -1,0 +1,25 @@
+{
+  "name": "bella-estetica",
+  "version": "1.0.0",
+  "description": "Sistema de gestión de turnos para centro de estética",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "setup": "node backend/utils/setupDatabase.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "dotenv": "^10.0.0",
+    "nodemailer": "^6.6.3",
+    "cors": "^2.8.5",
+    "helmet": "^4.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "author": "Tu Nombre",
+  "license": "MIT"
+}

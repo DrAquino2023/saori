@@ -1,0 +1,85 @@
+# ========================================
+# BELLA ESTÉTICA - VARIABLES DE ENTORNO
+# ========================================
+
+# Entorno de ejecución
+NODE_ENV=development
+
+# Puerto del servidor
+PORT=3000
+
+# ========================================
+# BASE DE DATOS MYSQL
+# ========================================
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=bella_estetica
+
+# ========================================
+# MERCADO PAGO CONFIGURACIÓN
+# ========================================
+# Obtener estas claves en: https://www.mercadopago.com.ar/developers/panel/app
+# IMPORTANTE: Estas son claves de TESTING, cambiar por producción antes del deploy
+
+# Clave pública (se usa en el frontend)
+MP_PUBLIC_KEY=TEST-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+# Access Token (se usa en el backend)
+MP_ACCESS_TOKEN=TEST-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-xxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-xxxxxxxxx-xxxxxxxx
+
+# ========================================
+# CONFIGURACIÓN DE EMAIL
+# ========================================
+# Para Gmail, necesitas una "App Password"
+# Instrucciones: https://support.google.com/accounts/answer/185833
+
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_SECURE=false
+EMAIL_USER=tu-email@gmail.com
+EMAIL_PASSWORD=tu-app-password
+
+# ========================================
+# CONFIGURACIÓN DEL NEGOCIO
+# ========================================
+BUSINESS_NAME=Bella Estética
+BUSINESS_ADDRESS=Av. Corrientes 1234, CABA
+BUSINESS_PHONE=+54 11 1234-5678
+BUSINESS_EMAIL=info@bellaestetica.com
+
+# ========================================
+# SEGURIDAD
+# ========================================
+# Generar una clave secreta aleatoria para JWT
+JWT_SECRET=tu-clave-secreta-muy-larga-y-segura-aqui
+
+# ========================================
+# CONFIGURACIÓN OPCIONAL
+# ========================================
+
+# Google Analytics
+GA_MEASUREMENT_ID=G-XXXXXXXXXX
+
+# Facebook Pixel
+FACEBOOK_PIXEL_ID=XXXXXXXXXXXXXXX
+
+# WhatsApp
+WHATSAPP_NUMBER=5491123456789
+
+# ========================================
+# CONFIGURACIÓN DE PRODUCCIÓN
+# ========================================
+# Descomentar y configurar para producción
+
+# DATABASE_URL=mysql://usuario:password@host:puerto/database
+# REDIS_URL=redis://localhost:6379
+# SESSION_SECRET=otra-clave-secreta-para-sesiones
+
+# ========================================
+# NOTAS IMPORTANTES
+# ========================================
+# 1. NUNCA subir este archivo a repositorios públicos
+# 2. Crear un archivo .env.example con valores de ejemplo
+# 3. Cambiar todas las claves antes de ir a producción
+# 4. Usar variables de entorno del hosting en producción

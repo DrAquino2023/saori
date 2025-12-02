@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimización -->
+    <title>Bella Estética | Centro de Estética y Belleza | Tratamientos Faciales y Corporales</title>
+    <meta name="description" content="Centro de estética profesional. Tratamientos faciales, corporales, depilación láser y más. ✨ Primera visita 30% OFF. Reserva tu turno online.">
+    <meta name="keywords" content="centro estética, tratamientos faciales, depilación láser, belleza, cuidado piel, estética profesional">
+    
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:title" content="Bella Estética - Centro de Belleza Profesional">
+    <meta property="og:description" content="Tratamientos de estética profesional. Primera visita 30% OFF. Reserva online.">
+    <meta property="og:type" content="business.business">
+    <meta property="og:url" content="https://www.bellaestetica.com">
+    
+    <!-- Schema.org para SEO Local -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BeautySalon",
+        "name": "Bella Estética",
+        "description": "Centro de estética y belleza profesional",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Corrientes 1234",
+            "addressLocality": "Buenos Aires",
+            "addressRegion": "CABA",
+            "postalCode": "1043",
+            "addressCountry": "AR"
+        },
+        "telephone": "+54-11-1234-5678",
+        "openingHours": "Mo-Fr 09:00-19:00, Sa 09:00-15:00",
+        "priceRange": "$$",
+        "servesCuisine": [],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Servicios de Estética",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Limpieza Facial Profunda"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Analytics -->
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <!-- Facebook Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+    <!-- WhatsApp Float Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5491123456789?text=Hola! Me interesa consultar sobre los tratamientos de estética" 
+           target="_blank" 
+           onclick="gtag('event', 'whatsapp_click', { 'event_category': 'contact', 'event_label': 'float_button' });">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Promoción Header -->
+    <div class="promo-banner">
+        <div class="container">
+            <span class="promo-text">🔥 PRIMERA VISITA 30% OFF - SOLO POR TIEMPO LIMITADO</span>
+            <button class="promo-close">&times;</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2>Bella Estética</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#" class="btn-reservar" onclick="openBookingModal()">Reservar Turno</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text">
+                    <h1>Tu belleza, nuestra pasión</h1>
+                    <p>Descubre tratamientos de estética profesional que realzan tu belleza natural. Más de 500 clientas confían en nosotros.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="openBookingModal()">
+                            <i class="fas fa-calendar-check"></i>
+                            Reservar Turno Ahora
+                        </button>
+                        <a href="https://wa.me/5491123456789" class="btn btn-secondary" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            Consulta Gratis
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Clientas Satisfechas</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Años de Experiencia</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Tratamientos Disponibles</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-bg"></div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="servicios">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestros Servicios</h2>
+                <p>Tratamientos profesionales con la mejor tecnología</p>
+            </div>
+            <div class="servicios-grid">
+                <div class="servicio-card" data-price="3500" data-duration="60">
+                    <div class="servicio-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Limpieza Facial Profunda</h3>
+                    <p>Tratamiento completo de limpieza, hidratación y renovación facial.</p>
+                    <div class="servicio-price">$3.500</div>
+                    <button class="btn btn-outline" onclick="selectService('Limpieza Facial Profunda', 3500, 60)">
+                        Reservar
+                    </button>
+                </div>
+                
+                <div class="servicio-card" data-price="4200" data-duration="90">
+                    <div class="servicio-icon">
+                        <i class="fas fa-burn"></i>
+                    </div>
+                    <h3>Depilación Láser</h3>
+                    <p>Depilación definitiva con tecnología láser de última generación.</p>
+                    <div class="servicio-price">$4.200</div>
+                    <button class="btn btn-outline" onclick="selectService('Depilación Láser', 4200, 90)">
+                        Reservar
+                    </button>
+                </div>
+                
+                <div class="servicio-card" data-price="2800" data-duration="45">
+                    <div class="servicio-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Tratamiento Antienvejecimiento</h3>
+                    <p>Reduce líneas de expresión y mejora la elasticidad de la piel.</p>
+                    <div class="servicio-price">$2.800</div>
+                    <button class="btn btn-outline" onclick="selectService('Tratamiento Antienvejecimiento', 2800, 45)">
+                        Reservar
+                    </button>
+                </div>
+                
+                <div class="servicio-card" data-price="5000" data-duration="120">
+                    <div class="servicio-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Tratamiento Corporal Completo</h3>
+                    <p>Masajes reductores, drenaje linfático y tonificación muscular.</p>
+                    <div class="servicio-price">$5.000</div>
+                    <button class="btn btn-outline" onclick="selectService('Tratamiento Corporal Completo', 5000, 120)">
+                        Reservar
+                    </button>
+                </div>
+                
+                <div class="servicio-card" data-price="1800" data-duration="30">
+                    <div class="servicio-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Diseño de Cejas</h3>
+                    <p>Perfilado y diseño profesional de cejas para realzar tu mirada.</p>
+                    <div class="servicio-price">$1.800</div>
+                    <button class="btn btn-outline" onclick="selectService('Diseño de Cejas', 1800, 30)">
+                        Reservar
+                    </button>
+                </div>
+                
+                <div class="servicio-card" data-price="6500" data-duration="150">
+                    <div class="servicio-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Paquete Premium</h3>
+                    <p>Facial + corporal + diseño de cejas. El tratamiento completo.</p>
+                    <div class="servicio-price">$6.500</div>
+                    <div class="servicio-badge">MÁS POPULAR</div>
+                    <button class="btn btn-outline" onclick="selectService('Paquete Premium', 6500, 150)">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios Section -->
+    <section id="testimonios" class="testimonios">
+        <div class="container">
+            <div class="section-header">
+                <h2>Lo que dicen nuestras clientas</h2>
+                <p>Testimonios reales de transformaciones increíbles</p>
+            </div>
+            <div class="testimonios-slider">
+                <div class="testimonio-card active">
+                    <div class="testimonio-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Increíble la atención y los resultados. Mi piel nunca se vio mejor. El tratamiento facial es espectacular."</p>
+                    <div class="testimonio-author">
+                        <strong>María González</strong>
+                        <span>Cliente desde 2022</span>
+                    </div>
+                </div>
+                <div class="testimonio-card">
+                    <div class="testimonio-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"La depilación láser funcionó perfectamente. Profesionales muy capacitadas y lugar muy limpio."</p>
+                    <div class="testimonio-author">
+                        <strong>Ana Rodríguez</strong>
+                        <span>Cliente desde 2021</span>
+                    </div>
+                </div>
+                <div class="testimonio-card">
+                    <div class="testimonio-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"El paquete premium es excelente. Sales renovada completamente. Lo recomiendo 100%."</p>
+                    <div class="testimonio-author">
+                        <strong>Laura Martínez</strong>
+                        <span>Cliente desde 2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nosotros Section -->
+    <section id="nosotros" class="nosotros">
+        <div class="container">
+            <div class="nosotros-content">
+                <div class="nosotros-text">
+                    <h2>Más de 10 años cuidando tu belleza</h2>
+                    <p>Somos un centro de estética profesional comprometido con realzar la belleza natural de cada mujer. Contamos con profesionales certificadas y la mejor tecnología del mercado.</p>
+                    <div class="nosotros-features">
+                        <div class="feature">
+                            <i class="fas fa-certificate"></i>
+                            <div>
+                                <h4>Profesionales Certificadas</h4>
+                                <p>Equipo altamente capacitado y en constante actualización</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h4>Productos Premium</h4>
+                                <p>Utilizamos solo productos de las mejores marcas internacionales</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-heart"></i>
+                            <div>
+                                <h4>Atención Personalizada</h4>
+                                <p>Cada tratamiento es único y adaptado a tus necesidades</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nosotros-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-spa"></i>
+                        <p>Nuestro Centro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Reserva -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Reservar Turno</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="booking-steps">
+                <div class="step active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Servicio</span>
+                </div>
+                <div class="step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Fecha y Hora</span>
+                </div>
+                <div class="step" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Datos</span>
+                </div>
+                <div class="step" data-step="4">
+                    <span class="step-number">4</span>
+                    <span class="step-label">Pago</span>
+                </div>
+            </div>
+            
+            <!-- Paso 1: Selección de Servicio -->
+            <div id="step1" class="booking-step active">
+                <h3>Selecciona tu tratamiento</h3>
+                <div class="service-selection">
+                    <div class="service-option" data-service="Limpieza Facial Profunda" data-price="3500" data-duration="60">
+                        <div class="service-info">
+                            <h4>Limpieza Facial Profunda</h4>
+                            <p>60 minutos</p>
+                        </div>
+                        <div class="service-price">$3.500</div>
+                    </div>
+                    <div class="service-option" data-service="Depilación Láser" data-price="4200" data-duration="90">
+                        <div class="service-info">
+                            <h4>Depilación Láser</h4>
+                            <p>90 minutos</p>
+                        </div>
+                        <div class="service-price">$4.200</div>
+                    </div>
+                    <div class="service-option" data-service="Tratamiento Antienvejecimiento" data-price="2800" data-duration="45">
+                        <div class="service-info">
+                            <h4>Tratamiento Antienvejecimiento</h4>
+                            <p>45 minutos</p>
+                        </div>
+                        <div class="service-price">$2.800</div>
+                    </div>
+                    <div class="service-option" data-service="Tratamiento Corporal Completo" data-price="5000" data-duration="120">
+                        <div class="service-info">
+                            <h4>Tratamiento Corporal Completo</h4>
+                            <p>120 minutos</p>
+                        </div>
+                        <div class="service-price">$5.000</div>
+                    </div>
+                    <div class="service-option" data-service="Diseño de Cejas" data-price="1800" data-duration="30">
+                        <div class="service-info">
+                            <h4>Diseño de Cejas</h4>
+                            <p>30 minutos</p>
+                        </div>
+                        <div class="service-price">$1.800</div>
+                    </div>
+                    <div class="service-option popular" data-service="Paquete Premium" data-price="6500" data-duration="150">
+                        <div class="service-badge">MÁS POPULAR</div>
+                        <div class="service-info">
+                            <h4>Paquete Premium</h4>
+                            <p>150 minutos - Tratamiento completo</p>
+                        </div>
+                        <div class="service-price">$6.500</div>
+                    </div>
+                </div>
+                <div class="promo-notice">
+                    <i class="fas fa-gift"></i>
+                    <span>🎉 Primera visita: 30% de descuento aplicado automáticamente</span>
+                </div>
+            </div>
+
+            <!-- Paso 2: Selección de Fecha y Hora -->
+            <div id="step2" class="booking-step">
+                <h3>Selecciona fecha y horario</h3>
+                <div class="datetime-selection">
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button class="calendar-nav prev-month">&lt;</button>
+                            <h4 id="currentMonth"></h4>
+                            <button class="calendar-nav next-month">&gt;</button>
+                        </div>
+                        <div id="calendar" class="calendar-grid"></div>
+                    </div>
+                    <div class="time-slots">
+                        <h4>Horarios disponibles</h4>
+                        <div id="timeSlots" class="time-grid">
+                            <p>Selecciona una fecha para ver horarios disponibles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 3: Datos del Cliente -->
+            <div id="step3" class="booking-step">
+                <h3>Completa tus datos</h3>
+                <form id="clientForm" class="client-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Nombre</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Apellido</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comments">Comentarios adicionales (opcional)</label>
+                        <textarea id="comments" name="comments" rows="3" placeholder="¿Alguna alergia o consideración especial?"></textarea>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="newsletter" name="newsletter" checked>
+                            <span class="checkmark"></span>
+                            Quiero recibir tips de belleza y promociones especiales
+                        </label>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span class="checkmark"></span>
+                            Acepto los términos y condiciones
+                        </label>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Paso 4: Resumen y Pago -->
+            <div id="step4" class="booking-step">
+                <h3>Resumen de tu reserva</h3>
+                <div class="booking-summary">
+                    <div class="summary-item">
+                        <span class="label">Servicio:</span>
+                        <span id="summaryService">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Fecha:</span>
+                        <span id="summaryDate">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Hora:</span>
+                        <span id="summaryTime">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Duración:</span>
+                        <span id="summaryDuration">-</span>
+                    </div>
+                    <div class="summary-item price-item">
+                        <span class="label">Precio original:</span>
+                        <span id="summaryOriginalPrice">-</span>
+                    </div>
+                    <div class="summary-item discount-item">
+                        <span class="label">Descuento primera visita (30%):</span>
+                        <span id="summaryDiscount">-</span>
+                    </div>
+                    <div class="summary-item total-item">
+                        <span class="label">Total a pagar:</span>
+                        <span id="summaryTotal">-</span>
+                    </div>
+                </div>
+                
+                <div class="payment-section">
+                    <h4>Método de pago</h4>
+                    <div id="mercado-pago-button" class="mp-button-container">
+                        <!-- El botón de Mercado Pago se cargará aquí -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button id="prevStep" class="btn btn-secondary" style="display: none;">Anterior</button>
+                <button id="nextStep" class="btn btn-primary">Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Popup -->
+    <div id="newsletterPopup" class="newsletter-popup">
+        <div class="popup-content">
+            <button class="popup-close">&times;</button>
+            <div class="popup-icon">
+                <i class="fas fa-gift"></i>
+            </div>
+            <h3>¡Recibe tips de belleza exclusivos!</h3>
+            <p>Suscríbete y obtén un <strong>15% de descuento</strong> adicional en tu primera visita</p>
+            <form id="newsletterForm" class="newsletter-form">
+                <input type="email" placeholder="Tu email" required>
+                <button type="submit" class="btn btn-primary">¡Quiero mi descuento!</button>
+            </form>
+            <p class="popup-disclaimer">No enviamos spam. Puedes desuscribirte cuando quieras.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Bella Estética</h3>
+                    <p>Tu centro de belleza y bienestar de confianza desde hace más de 10 años.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#">Tratamientos Faciales</a></li>
+                        <li><a href="#">Depilación Láser</a></li>
+                        <li><a href="#">Tratamientos Corporales</a></li>
+                        <li><a href="#">Diseño de Cejas</a></li>
+                        <li><a href="#">Paquetes Premium</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Av. Corrientes 1234, CABA</p>
+                        <p><i class="fas fa-phone"></i> +54 11 1234-5678</p>
+                        <p><i class="fas fa-envelope"></i> info@bellaestetica.com</p>
+                        <p><i class="fas fa-clock"></i> Lun-Vie: 9:00-19:00 | Sáb: 9:00-15:00</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <p>Mantente al día con nuestros tips de belleza y promociones especiales.</p>
+                    <a href="https://wa.me/5491123456789" class="whatsapp-contact" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        Consulta por WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bella Estética. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/booking.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Mercado Pago SDK -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    
+</body>
+</html>
