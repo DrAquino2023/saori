@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const { getPool } = require("../config/mysql");
-const bookingController = require("../controllers/bookingController"); // legacy (Mongoose), mantené si lo usás
+const { sendConfirmationEmail } = require("../utils/mailer");
 
 // ────────────────────────────────────────────────────────────────
 // Helper: formatea Date local a 'YYYY-MM-DD HH:MM:SS' (evita desfase UTC)
@@ -13,13 +13,6 @@ function toLocalSQL(date) {
   return local.toISOString().slice(0, 19).replace("T", " ");
 }
 // ────────────────────────────────────────────────────────────────
-
-// Rutas legacy (Mongoose)
-router.post("/book", bookingController.createBooking);
-router.get("/bookings", bookingController.getAllBookings);
-router.get("/book/:id", bookingController.getBookingById);
-router.put("/book/:id", bookingController.updateBooking);
-router.delete("/book/:id", bookingController.deleteBooking);
 
 // Healthcheck MySQL
 router.get("/db-ping", async (_req, res) => {
@@ -115,12 +108,33 @@ router.post("/reservations", async (req, res) => {
       [service_id, resource_id, customerId, startSql, endSql, priceCents]
     );
 
-    // 8) Responder con horarios en hora local y banderas de éxito
+    // 8) Obtener nombre del servicio para el email
+    const [svcInfo] = await pool.query(
+      "SELECT name, duration_min FROM saori.services WHERE id = ?",
+      [service_id]
+    );
+
+    // 9) Enviar email de confirmación (sin bloquear la respuesta)
+    const reservationId = ins.insertId;
+    sendConfirmationEmail({
+      customerName: name,
+      customerEmail: email,
+      serviceName: svcInfo[0].name,
+      date: start,
+      time: start.toTimeString().slice(0, 5),
+      duration: svcInfo[0].duration_min,
+      reservationId: reservationId
+    }).catch(err => {
+      console.error('Error enviando email de confirmación:', err);
+      // No fallar la reserva si el email falla
+    });
+
+    // 10) Responder con horarios en hora local y banderas de éxito
     return res.json({
       ok: true,
       success: true,
-      reservation_id: ins.insertId, // snake_case
-      reservationId: ins.insertId, // camelCase
+      reservation_id: reservationId, // snake_case
+      reservationId: reservationId, // camelCase
       start_time: startSql,
       end_time: endSql,
     });
